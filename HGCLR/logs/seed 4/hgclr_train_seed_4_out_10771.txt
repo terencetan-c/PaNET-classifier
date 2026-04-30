@@ -1,0 +1,83 @@
+Job started at Thu  2 Apr 13:49:59 BST 2026
+Running on node: cs05r-sc-hop01-03.diamond.ac.uk
+Job ID: 10771
+
+    [32mLoading a conda environment of Python 3.9 (B[m
+    [32mIf there are any problems, please contact dataanalysis@diamond.ac.uk(B[m
+
+    [32mNeed a 3rd party Python package installing? First, consider using the(B[m
+    [32muser-based install option of pip to test it. (I.e., use(B[m
+    [32m$ pip install --user ... For further details, see $ pip help install)(B[m
+
+    [32mThis will install the package in ~/.local(B[m
+    [32m[1mPlease read https://confluence.diamond.ac.uk/x/rKDIAw for other options.(B[m
+    [32mIf a site-wide installation is required, contact Data Analysis.(B[m
+
+Working directory: /tmp/panet_10771
+
+Python version: Python 3.9.19
+PyTorch version: 1.13.1+cu116
+CUDA available: True
+GPU name: NVIDIA A100-SXM4-40GB
+CUDA version: 11.6
+GPU name: NVIDIA A100-SXM4-40GB
+Thu Apr  2 13:50:12 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 595.45.04              Driver Version: 595.45.04      CUDA Version: 13.2     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:17:00.0 Off |                    0 |
+| N/A   25C    P0             49W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
+Namespace(lr=3e-05, data='panet', batch=12, early_stop=6, device='cuda', name='hgclr_seed_4_experiment_1', update=1, warmup=2000, contrast=1, graph=1, layer=1, multi=True, lamb=1, thre=0.02, tau=1, seed=4, wandb=False)
+macro 0.08775319602395988 micro 0.6630734219667026
+macro 0.18640830462003627 micro 0.7707077472650145
+macro 0.31025926168709866 micro 0.8395419733809206
+macro 0.34201633515607316 micro 0.8507666728246812
+macro 0.37528021671440154 micro 0.8615329255127744
+macro 0.42553295971448024 micro 0.869941571088509
+macro 0.4864662195000882 micro 0.8773279208061817
+macro 0.4777855900230776 micro 0.8757254915755038
+macro 0.5050348311186366 micro 0.8758110968458309
+macro 0.5242605717741113 micro 0.8791139017249285
+macro 0.5472471483091124 micro 0.8821349147516678
+macro 0.5476779545014792 micro 0.8753643796658371
+macro 0.5435217103861961 micro 0.8835929061705167
+macro 0.5499158376228561 micro 0.8752580156873537
+macro 0.549004044640219 micro 0.8748505244456591
+macro 0.544063873432724 micro 0.8789178258899
+macro 0.5518275792526515 micro 0.8812130229921706
+macro 0.5385063265059267 micro 0.8704020823344064
+macro 0.5740175325616653 micro 0.8791201165776142
+macro 0.5652760802837519 micro 0.8736958474400608
+macro 0.5822241093286793 micro 0.8746333286771896
+macro 0.5601417903852566 micro 0.87490221179148
+macro 0.5716290337865879 micro 0.8753853240265033
+macro 0.5827513385793095 micro 0.8751534997953336
+macro 0.5838106918781131 micro 0.8769523005487548
+macro 0.5849694844523056 micro 0.8791345093715546
+macro 0.5919847316146623 micro 0.8787868248060937
+macro 0.5817649103545475 micro 0.8736897092112137
+macro 0.5982913224518431 micro 0.8746838512975089
+macro 0.607060254551291 micro 0.8712624584717608
+macro 0.5823745278237561 micro 0.8768627999720142
+macro 0.6008702065703284 micro 0.8768131029217852
+macro 0.6034273805292928 micro 0.8719751527355881
+macro 0.6009640647358861 micro 0.8707478260869566
+macro 0.6066371965201396 micro 0.8719163763066203
+macro 0.605601259738937 micro 0.8737092391304347
+Early stop!
+Job completed at Thu  2 Apr 18:53:25 BST 2026
