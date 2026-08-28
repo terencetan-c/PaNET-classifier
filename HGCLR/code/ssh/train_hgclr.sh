@@ -20,7 +20,7 @@ echo "Job ID: $SLURM_JOB_ID"
 # Load the software environment
 module purge
 module load cuda/11.6                    # Match this to your PyTorch version
-module load python/3.9
+module load python/3.10
 
 # Create working directory in fast local storage
 WORK_DIR=/tmp/panet_${SLURM_JOB_ID}
