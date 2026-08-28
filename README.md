@@ -12,6 +12,16 @@ This repository investigates the use several machine learning models to tag publ
 
 PaNET_mapping.xlsx maps the DLS technique terms to PaNET terms. Note that the map for the DLS technique terms is not publicly available, so it can't be shared directly in this repository. However, it can be partially reverse engineered by looking at all the DLS technique terms in the 'Discipline/Technical Tags' column of the publications, and then mapped to PaNET terms. Hence, while PaNET_mapping.xlsx was originally created using the internal Diamond map, it can also be reproduced using publicly available information.
 
+## Models
+
+1. Baseline model
+   This is a simple SciBERT + MLP model that serves as a baseline. The GitHub repository for SciBERT [3] can be found here:
+   https://github.com/allenai/scibert/
+   
+2. HGCLR
+   This is a Hierarchy-guided Contrastive Learning (HGCLR) approach to hierarchical text classification [4]. The original repository can be found here:
+   https://github.com/wzh9969/contrastive-htc
+
 ## Data preprocessing
 Download the list of publications from Diamond Light Source. 
 
@@ -32,3 +42,7 @@ Note that this steps have to be done sequentially, as the code in data_prep_hgcl
 
 
 [2] Tan, T., Bago, B., Busch, S., Duyme, R., Gaisne, G., Gonzalez Beltran, A. N., Gorzig, H., Koumoutsos, G., Krahl, R., Millar, P., Minotti, C., Nentwich, M., Schrettner, L., Syder, K., Rocca-Serra, P., Sansone, S.-A. & Collins, S. P. (2025). J. Synchrotron Rad. 32, 1361-1369.
+
+[3] Beltagy, Iz, Kyle Lo, and Arman Cohan. ‘SciBERT: Pretrained Language Model for Scientific Text’. In EMNLP, 2019.
+
+[4] Zihan Wang, Peiyi Wang, Lianzhe Huang, Xin Sun, and Houfeng Wang. 2022. Incorporating Hierarchy into Text Encoder: a Contrastive Learning Approach for Hierarchical Text Classification. In Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pages 7109–7119, Dublin, Ireland. Association for Computational Linguistics.
