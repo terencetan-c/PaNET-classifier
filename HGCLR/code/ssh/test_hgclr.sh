@@ -37,10 +37,21 @@ export TOKENIZERS_PARALLELISM=false
 echo "Working directory: ${WORK_DIR}"
 echo ""
 
+PROJECT_DIR=/dls/tmp/fdp54928/panet_classifier/hgclr
+
 # Activate virtual environment
-source /dls/tmp/fdp54928/panet_classifier/hgclr/venv/bin/activate
+source "${PROJECT_DIR}/venv/bin/activate"
+
+# Run from project root
+cd "${PROJECT_DIR}" || exit 1
+
+# Allow Python to find packages under hgclr/
+export PYTHONPATH="${PROJECT_DIR}:${PYTHONPATH:-}"
+
 
 # Print environment info
+echo "Current directory: $(pwd)"
+echo "PYTHONPATH: ${PYTHONPATH}"
 echo "Python version: $(python --version)"
 echo "PyTorch version: $(python -c 'import torch; print(torch.__version__)')"
 echo "CUDA available: $(python -c 'import torch; print(torch.cuda.is_available())')"
@@ -51,7 +62,7 @@ echo ""
 
 
 # Execute the training script
-python /dls/tmp/fdp54928/panet_classifier/hgclr/ssh/test.py \
+python ssh/test.py \
     --name 'panet-hgclr_seed_42' \
     --extra '_macro' \
 
