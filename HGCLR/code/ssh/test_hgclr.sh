@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=test_hgclr_seed_42            # Name of the job
-#SBATCH --output=logs/hgclr_test_seed_42_out_%j.txt   # Standard output log (%j = job ID)
-#SBATCH --error=logs/hgclr_test_seed_42_err_%j.txt    # Standard error log
+#SBATCH --job-name=test_hgclr            # Name of the job
+#SBATCH --output=logs/hgclr_test_out_%j.txt   # Standard output log (%j = job ID)
+#SBATCH --error=logs/hgclr_test_err_%j.txt    # Standard error log
 #SBATCH --partition=cs05r                # Name of the GPU partition (check your cluster docs)
 #SBATCH --gres=gpu:1                     # Request 1 GPU (usually more than enough for SciBERT)
 #SBATCH --nodes=1                        # Run on a single node
@@ -12,10 +12,18 @@
 #SBATCH --mail-type=END,FAIL
 #SBATCH --mail-user=terence.tan@diamond.ac.uk
 
+# ============================================================
+# Seed
+# ============================================================
+# Use the first command-line argument as the seed.
+# If no argument is supplied, default to 42.
+SEED=${1:-42}
+
 # Print job info
 echo "Job started at $(date)"
 echo "Running on node: $(hostname)"
 echo "Job ID: $SLURM_JOB_ID"
+echo "Seed: ${SEED}"
 
 # Load the software environment
 module purge
@@ -63,7 +71,7 @@ echo ""
 
 # Execute the training script
 python ssh/test.py \
-    --name 'panet-hgclr_seed_42' \
+    --name 'hgclr_seed_${SEED}' \
     --extra '_macro' \
 
 
