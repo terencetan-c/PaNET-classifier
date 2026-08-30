@@ -2,7 +2,7 @@
 
 The project has been tested with:
 
-* Python 3.10
+* Python 3.10.12
 * PyTorch 1.13.1
 * CUDA 11.6
 * PyTorch Geometric 2.3.1
@@ -20,7 +20,7 @@ Verify that the correct Python version is being used:
 python --version
 ```
 
-The output should show Python 3.10.
+The output should show Python 3.10.12.
 
 ## 2. Install PyTorch
 
