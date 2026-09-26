@@ -1,0 +1,69 @@
+Job started at Sat 29 Aug 17:51:30 BST 2026
+Running on node: cs05r-sc-hop01-02.diamond.ac.uk
+Job ID: 12513
+Seed: 4
+
+    [32mLoading a conda environment of Python 3.10 (B[m
+    [32mIf there are any problems, please contact dataanalysis@diamond.ac.uk(B[m
+
+    [32mNeed a 3rd party Python package installing? First, consider using the(B[m
+    [32muser-based install option of pip to test it. (I.e., use(B[m
+    [32m$ pip install --user ... For further details, see $ pip help install)(B[m
+
+    [32mThis will install the package in ~/.local(B[m
+    [32m[1mPlease read https://confluence.diamond.ac.uk/x/rKDIAw for other options.(B[m
+    [32mIf a site-wide installation is required, contact Data Analysis.(B[m
+
+Working directory: /tmp/panet_12513
+
+Current directory: /dls/tmp/fdp54928/panet_classifier/hgclr
+PYTHONPATH: /dls/tmp/fdp54928/panet_classifier/hgclr:
+Python version: Python 3.10.12
+PyTorch version: 1.13.1+cu116
+CUDA available: True
+GPU name: NVIDIA A100-SXM4-40GB
+CUDA version: 11.6
+Sat Aug 29 17:51:41 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 610.57.04              KMD Version: 610.57.04     CUDA UMD Version: 13.3     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:17:00.0 Off |                    0 |
+| N/A   39C    P0             55W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
+Namespace(lr=3e-05, data='panet', batch=12, early_stop=6, device='cuda', name='hgclr_seed_4', update=1, warmup=2000, contrast=1, graph=1, layer=1, multi=True, lamb=1, thre=0.02, tau=1, seed=4, wandb=False)
+macro 0.08811925778561898 micro 0.6650151829950456
+macro 0.18623801811459859 micro 0.7899965741692361
+macro 0.3102967966307193 micro 0.8384935390052646
+macro 0.34876765538818366 micro 0.8571004930125662
+macro 0.3894428417585291 micro 0.8646727227029551
+macro 0.44301043481376084 micro 0.8744102930664761
+macro 0.48439767398059996 micro 0.8821303633897337
+macro 0.46993031262709906 micro 0.8781035996488147
+macro 0.5035089579162252 micro 0.8738852608665122
+macro 0.5345191351676318 micro 0.8767976486231148
+macro 0.5384391229631156 micro 0.8789786760357603
+macro 0.5294549583188487 micro 0.8739144082871194
+macro 0.5444777166906154 micro 0.8800897836074774
+macro 0.5946091241066945 micro 0.8789517470881862
+macro 0.5556202586236586 micro 0.8750821600304424
+macro 0.5620275372156596 micro 0.8779339472408779
+macro 0.5597337911984521 micro 0.8797155972802263
+macro 0.5720721379074994 micro 0.8797472748732904
+macro 0.5717376219844517 micro 0.8758691910499139
+macro 0.5942969139583436 micro 0.8774831028922359
+Early stop!
+Job completed at Sat 29 Aug 20:21:13 BST 2026

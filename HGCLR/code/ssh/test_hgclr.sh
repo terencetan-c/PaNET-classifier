@@ -71,7 +71,7 @@ echo ""
 
 # Execute the training script
 python ssh/test.py \
-    --name 'hgclr_seed_${SEED}' \
+    --name "hgclr_seed_${SEED}" \
     --extra '_macro' \
 
 

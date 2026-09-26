@@ -19,10 +19,10 @@ echo "Job ID: $SLURM_JOB_ID"
 
 # Load the software environment
 module purge
-module load python/3.9                   # Or your preferred version
-module load cuda/11.8                    # Match this to your PyTorch version
+module load python/3.11                   # Or your preferred version
+module load cuda/12.1                    # Match this to your PyTorch version
 
-# Create working directory in fast local storage (402GB available!)
+# Create working directory in fast local storage
 WORK_DIR=/tmp/panet_${SLURM_JOB_ID}
 
 # Set cache directories to local storage (prevents filling home directory)
@@ -36,7 +36,7 @@ echo "Working directory: ${WORK_DIR}"
 echo ""
 
 # Activate virtual environment
-source $HOME/panet_venv/bin/activate
+source my_venv/bin/activate
 
 # Print environment info
 echo "Python version: $(python --version)"
@@ -44,13 +44,12 @@ echo "PyTorch version: $(python -c 'import torch; print(torch.__version__)')"
 echo "CUDA available: $(python -c 'import torch; print(torch.cuda.is_available())')"
 echo "GPU name: $(python -c 'import torch; print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else "No GPU")')"
 echo "CUDA version: $(python -c 'import torch; print(torch.version.cuda if torch.cuda.is_available() else "N/A")')"
-echo "GPU name: $(python -c 'import torch; print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else "No GPU")')"
 nvidia-smi
 echo ""
 
 
 # Execute the training script
-python $HOME/scripts/train_panet_baseline.py
+python train_panet_baseline.py
 
 # Deactivate virtual environment
 deactivate

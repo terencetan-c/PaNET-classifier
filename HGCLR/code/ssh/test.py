@@ -22,7 +22,8 @@ if __name__ == '__main__':
     device = args.device
     extra = args.extra
     args = checkpoint['args'] if checkpoint['args'] is not None else args
-    data_path = os.path.join('data', args.data)
+    # data_path = os.path.join('data', args.data)
+    data_path = 'processed_data'
 
     if not hasattr(args, 'graph'):
         args.graph = False

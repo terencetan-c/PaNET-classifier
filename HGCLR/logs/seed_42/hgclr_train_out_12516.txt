@@ -1,0 +1,71 @@
+Job started at Sun 30 Aug 10:29:33 BST 2026
+Running on node: cs05r-sc-hop01-02.diamond.ac.uk
+Job ID: 12516
+Seed: 42
+
+    [32mLoading a conda environment of Python 3.10 (B[m
+    [32mIf there are any problems, please contact dataanalysis@diamond.ac.uk(B[m
+
+    [32mNeed a 3rd party Python package installing? First, consider using the(B[m
+    [32muser-based install option of pip to test it. (I.e., use(B[m
+    [32m$ pip install --user ... For further details, see $ pip help install)(B[m
+
+    [32mThis will install the package in ~/.local(B[m
+    [32m[1mPlease read https://confluence.diamond.ac.uk/x/rKDIAw for other options.(B[m
+    [32mIf a site-wide installation is required, contact Data Analysis.(B[m
+
+Working directory: /tmp/panet_12516
+
+Current directory: /dls/tmp/fdp54928/panet_classifier/hgclr
+PYTHONPATH: /dls/tmp/fdp54928/panet_classifier/hgclr:
+Python version: Python 3.10.12
+PyTorch version: 1.13.1+cu116
+CUDA available: True
+GPU name: NVIDIA A100-SXM4-40GB
+CUDA version: 11.6
+Sun Aug 30 10:29:43 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 610.57.04              KMD Version: 610.57.04     CUDA UMD Version: 13.3     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:17:00.0 Off |                    0 |
+| N/A   25C    P0             51W /  400W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
+Namespace(lr=3e-05, data='panet', batch=12, early_stop=6, device='cuda', name='hgclr_seed_42', update=1, warmup=2000, contrast=1, graph=1, layer=1, multi=True, lamb=1, thre=0.02, tau=1, seed=42, wandb=False)
+macro 0.08771938262552664 micro 0.6602721033832323
+macro 0.1625688378806431 micro 0.7616223908918408
+macro 0.2832965096016076 micro 0.8254248510262636
+macro 0.314983788005939 micro 0.8457007372281703
+macro 0.41466742258485884 micro 0.8609371084941118
+macro 0.44982592504982527 micro 0.8647135924049736
+macro 0.4638496569237107 micro 0.873026034997866
+macro 0.47398909006917284 micro 0.869901521933751
+macro 0.5086349487158527 micro 0.8712622847982155
+macro 0.5091058256816862 micro 0.872370754093801
+macro 0.5206243167917853 micro 0.8834447447020338
+macro 0.5471468278230064 micro 0.8761970139008066
+macro 0.5615147954062346 micro 0.8796044843673838
+macro 0.5456382408107509 micro 0.8712594260756816
+macro 0.5625255659912459 micro 0.8818706135779306
+macro 0.5737273905238768 micro 0.8742392121999589
+macro 0.5497477921323783 micro 0.8792859850442813
+macro 0.543460271819771 micro 0.8773203359950223
+macro 0.5718149005066374 micro 0.8758984187829421
+macro 0.5635099093664924 micro 0.8747306221758776
+macro 0.5578129174019072 micro 0.8744628390278267
+macro 0.5615738568684526 micro 0.8820797861113066
+Early stop!
+Job completed at Sun 30 Aug 13:14:03 BST 2026

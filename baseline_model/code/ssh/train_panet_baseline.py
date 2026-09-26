@@ -20,10 +20,10 @@ torch.backends.cudnn.allow_tf32 = True
 # --- Setup ---
 MODEL_NAME = 'allenai/scibert_scivocab_uncased'  # SciBERT uncased model 
 TRAIN_PATH = './data/train_set.parquet' # Path to your training data
-EVAL_PATH = './data/eval_set.parquet' # Path to your evaluation data
+EVAL_PATH = './data/val_set.parquet' # Path to your evaluation data
 TEST_PATH = './data/test_set.parquet' # Path to your test data
 ANCESTER_INDICES_PATH = './data/ancestor_indices.pkl' # Path to pre-computed ancestor indices for hierarchical metrics
-OUTPUT_DIR = "./scibert_panet_results2"
+OUTPUT_DIR = "./scibert_panet_results"
 
 # 1. Load Data
 def load_and_format(path):
@@ -128,7 +128,7 @@ def hierarchical_f1_micro(labels, predictions):
         return 0.0
     return 2 * precision * recall / (precision + recall)
 
-# def hierarchical_f1_macro(labels, predictions):
+# def sample_hierarchical_f1_macro(labels, predictions):
 #     labels_aug = augment_with_ancestors(labels.astype(bool))
 #     preds_aug = augment_with_ancestors(predictions.astype(bool))
 
@@ -150,20 +150,71 @@ def hierarchical_f1_micro(labels, predictions):
 #     # Average across all samples (The "Macro" step)
 #     return np.mean(f1_samples)
 
+def hierarchical_f1_macro(labels, predictions):
+    """
+    Label-macro hierarchical F1.
+
+    - Adds ancestor labels to ground truth and predictions.
+    - Computes hierarchical TP, FP, FN for each label.
+    - Computes F1 separately for each label.
+    - Excludes labels with no ground-truth support.
+    - Macro-averages the remaining label-level F1 scores.
+    """
+    
+    # Add ancestors
+    labels_aug = augment_with_ancestors(labels.astype(bool))
+    preds_aug = augment_with_ancestors(predictions.astype(bool))
+
+    # Per-label TP, FP, FN
+    tp = np.sum(labels_aug & preds_aug, axis=0)
+    fp = np.sum(~labels_aug & preds_aug, axis=0)
+    fn = np.sum(labels_aug & ~preds_aug, axis=0)
+
+    # Only evaluate labels that occur in the ground truth
+    valid = (tp + fn) > 0
+
+    # Precision
+    precision = np.divide(
+        tp,
+        tp + fp,
+        out=np.zeros_like(tp, dtype=float),
+        where=(tp + fp) > 0
+    )
+
+    # Recall
+    recall = np.divide(
+        tp,
+        tp + fn,
+        out=np.zeros_like(tp, dtype=float),
+        where=(tp + fn) > 0
+    )
+
+    # F1 for each label
+    f1_per_label = np.divide(
+        2 * precision * recall,
+        precision + recall,
+        out=np.zeros_like(precision, dtype=float),
+        where=(precision + recall) > 0
+    )
+
+    # Macro-average across supported labels
+    return np.mean(f1_per_label[valid])
 
 
 # Bootstrap sampling
 def bootstrap_metrics(labels, predictions, n_bootstrap=1000, ci=0.95, seed=42):
     rng = np.random.default_rng(seed)
     n_samples = labels.shape[0]
-    scores = {'f1_micro': [], 'f1_macro': [], 'hf1': []}
+    scores = {'f1_micro': [], 'f1_macro': [], 'hf1_micro': [], 'hf1_macro': []}
 
     for _ in range(n_bootstrap):
         indices = rng.integers(0, n_samples, size=n_samples)
         l, p = labels[indices], predictions[indices]
-        scores['f1_micro'].append(f1_score(l, p, average='micro'))
-        scores['f1_macro'].append(f1_score(l, p, average='macro'))
-        scores['hf1'].append(hierarchical_f1_micro(l, p))
+        scores['f1_micro'].append(f1_score(l, p, average='micro', zero_division=0))
+        scores['f1_macro'].append(f1_score(l, p, average='macro', zero_division=0))
+        scores['hf1_micro'].append(hierarchical_f1_micro(l, p))
+        scores['hf1_macro'].append(hierarchical_f1_macro(l, p))
+
 
     alpha = (1 - ci) / 2
     results = {}
@@ -183,9 +234,10 @@ def compute_metrics(eval_pred):
 
     ci = bootstrap_metrics(labels, predictions)
 
-    return {'f1_micro': f1_score(labels, predictions, average='micro'), 
-            'f1_macro': f1_score(labels, predictions, average='macro'),
-            'hF1': hierarchical_f1_micro(labels, predictions),
+    return {'f1_micro': f1_score(labels, predictions, average='micro', zero_division=0), 
+            'f1_macro': f1_score(labels, predictions, average='macro', zero_division=0),
+            'hF1_micro': hierarchical_f1_micro(labels, predictions),
+            'hF1_macro': hierarchical_f1_macro(labels, predictions),
             **ci,
             }
 
@@ -211,6 +263,7 @@ def run_experiment(seed):
         output_dir=f"{OUTPUT_DIR}/seed{seed}/phase1",
         eval_strategy='epoch',
         save_strategy='epoch',
+        save_safetensors=False,
         group_by_length=True,
         learning_rate=2e-4, # Higher LR for the classification head
         per_device_train_batch_size=32,
@@ -218,7 +271,7 @@ def run_experiment(seed):
         num_train_epochs=3,
         weight_decay=0.01,
         load_best_model_at_end=True,
-        metric_for_best_model='hF1',
+        metric_for_best_model='hF1_micro',
         fp16=False,
         bf16=True, # A100's native mixed precision format; Hopper Cluster Testbed has A100 GPUs
         logging_steps=100,
@@ -262,6 +315,7 @@ def run_experiment(seed):
         output_dir=f"{OUTPUT_DIR}/seed{seed}/phase2",
         eval_strategy='epoch',
         save_strategy='epoch',
+        save_safetensors=False,
         group_by_length=True,
         learning_rate=2e-5, # Lower LR for fine-tuning
         per_device_train_batch_size=32,
@@ -269,7 +323,7 @@ def run_experiment(seed):
         num_train_epochs=4,
         weight_decay=0.01,
         load_best_model_at_end=True,
-        metric_for_best_model='hF1',
+        metric_for_best_model='hF1_micro',
         fp16=False,
         bf16=True, # A100's native mixed precision format; Hopper Cluster Testbed has A100 GPUs
         logging_steps=100,
@@ -319,6 +373,6 @@ print(results_df)
 
 # Aggregate mean ± std across seeds for the three main metrics
 print("\n=== Final Results (mean ± std across seeds) ===")
-for metric in ['test_f1_micro', 'test_f1_macro', 'test_hF1']:
+for metric in ['test_f1_micro', 'test_f1_macro', 'test_hF1_micro', 'test_hF1_macro']:
     vals = results_df[metric].values.astype(float)
     print(f"{metric}: {np.mean(vals):.4f} ± {np.std(vals):.4f}")

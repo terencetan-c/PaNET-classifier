@@ -121,7 +121,7 @@ if __name__ == '__main__':
         import wandb
         wandb.init(config=args, project='htc')
     utils.seed_torch(args.seed)
-    args.name = args.data + '-' + args.name
+    # args.name = args.data + '-' + args.name
     tokenizer = AutoTokenizer.from_pretrained("allenai/scibert_scivocab_uncased")
     # data_path = os.path.join('data', args.data)
     data_path = 'processed_data'
