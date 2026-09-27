@@ -35,9 +35,36 @@ Run HGCLR/code/data_prep_hgclr.ipynb to get the dataset for the HGCLR model.
 
 Note that this steps have to be done sequentially, as the code in data_prep_hgclr.ipynb depends on data produced by data_prep_baseline.ipynb.
 
+
 ## Results
+The models were trained and tested using NVIDIA A100 GPUs hosted at Diamond Light Source.
 
+The seeds used are: [1,2,3,4,42].
 
+The models were evaluated using F1-micro, F1-macro, hierarchical F1-micro, and hierarchical F1-macro scores. The mean and standard deviation for each metric were calculated using the five seeds:
+
+| Model | F1-micro (mean ± SD) | F1-macro (mean ± SD) | hF1-micro (mean ± SD) | hF1-macro (mean ± SD) |
+|-------|---------:|----------:|---------:|----------:|
+| Baseline model | 0.840 ± 0.001 | 0.376 ± 0.005 | 0.840 ± 0.001 | 0.392 ± 0.005 |
+| HGCLR | 0.847 ± 0.002 | 0.574 ± 0.021 | 0.847 ± 0.002 | 0.592 ± 0.022 |
+
+\
+Per-seed results:
+
+| Model / Seed | F1-micro | F1-macro | hF1-micro | hF1-macro |
+|---|---:|---:|---:|---:|
+| **Baseline model** | | | | |
+| ↳ Seed 1 | 0.841288 | 0.379940 | 0.840957 | 0.393864 |
+| ↳ Seed 2 | 0.839700 | 0.371216 | 0.841283 | 0.386215 |
+| ↳ Seed 3 | 0.839801 | 0.381900 | 0.839817 | 0.399754 |
+| ↳ Seed 4 | 0.838929 | 0.373937 | 0.838862 | 0.388453 |
+| ↳ Seed 42 | 0.840737 | 0.371884 | 0.840711 | 0.389872 |
+| **HGCLR** | | | | |
+| ↳ Seed 1 | 0.845648 | 0.596046 | 0.845179 | 0.612860 |
+| ↳ Seed 2 | 0.850296 | 0.544567 | 0.849745 | 0.559794 |
+| ↳ Seed 3 | 0.845124 | 0.559876 | 0.844972 | 0.578736 |
+| ↳ Seed 4 | 0.849400 | 0.585958 | 0.848215 | 0.604367 |
+| ↳ Seed 42 | 0.846993 | 0.585445 | 0.846593 | 0.604059 |
 
 ## References
 [1] Collins, Steve P., da Graça Ramos, Silvia, Iyayi, Daniel, Görzig, Heike, González Beltrán, Alejandra, Ashton, Alun, Egli, Stefan, and Minotti, Carlo. “Expands Ontologies V1.0”. Zenodo, June 4, 2021. doi:10.5281/zenodo.4806026.
