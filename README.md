@@ -41,7 +41,7 @@ The models were trained and tested using NVIDIA A100 GPUs hosted at Diamond Ligh
 
 The seeds used are: [1,2,3,4,42].
 
-The models were evaluated using F1-micro, F1-macro, hierarchical F1-micro, and hierarchical F1-macro scores. The mean and standard deviation for each metric were calculated using the five seeds:
+The models were evaluated using F1-micro, F1-macro, hierarchical F1-micro, and hierarchical F1-macro scores. The mean and standard deviation for each metric were calculated using the five seeds (refer to code/results_analysis.ipynb):
 
 | Model | F1-micro (mean ± SD) | F1-macro (mean ± SD) | hF1-micro (mean ± SD) | hF1-macro (mean ± SD) |
 |-------|---------:|----------:|---------:|----------:|

@@ -4,7 +4,7 @@ from torch.utils.data import DataLoader, Subset
 from tqdm import tqdm
 import argparse
 import os
-from HGCLR.code.ssh.train import BertDataset
+from train import BertDataset
 from eval import evaluate
 from model.contrast import ContrastModel
 
@@ -88,5 +88,8 @@ if __name__ == '__main__':
     scores = evaluate(pred, truth, label_dict)
     macro_f1 = scores['macro_f1']
     micro_f1 = scores['micro_f1']
-    print('macro', macro_f1, 'micro', micro_f1)
+    macro_hf1 = scores['hierarchical_macro_f1']
+    micro_hf1 = scores['hierarchical_micro_f1']
+
+    print('macro_f1', macro_f1, 'micro_f1', micro_f1, 'macro_hf1', macro_hf1, 'micro_hf1', micro_hf1)
 

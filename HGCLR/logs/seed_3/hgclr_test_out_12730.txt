@@ -1,7 +1,7 @@
-Job started at Sun 30 Aug 11:17:10 BST 2026
-Running on node: cs05r-sc-hop01-02.diamond.ac.uk
-Job ID: 12526
-Seed: 4
+Job started at Sun 27 Sep 01:42:45 BST 2026
+Running on node: cs05r-sc-hop01-03.diamond.ac.uk
+Job ID: 12730
+Seed: 3
 
     [32mLoading a conda environment of Python 3.10 (B[m
     [32mIf there are any problems, please contact dataanalysis@diamond.ac.uk(B[m
@@ -14,7 +14,7 @@ Seed: 4
     [32m[1mPlease read https://confluence.diamond.ac.uk/x/rKDIAw for other options.(B[m
     [32mIf a site-wide installation is required, contact Data Analysis.(B[m
 
-Working directory: /tmp/panet_12526
+Working directory: /tmp/panet_12730
 
 Current directory: /dls/tmp/fdp54928/panet_classifier/hgclr
 PYTHONPATH: /dls/tmp/fdp54928/panet_classifier/hgclr:
@@ -23,7 +23,7 @@ PyTorch version: 1.13.1+cu116
 CUDA available: True
 GPU name: NVIDIA A100-SXM4-40GB
 CUDA version: 11.6
-Sun Aug 30 11:17:19 2026       
+Sun Sep 27 01:43:00 2026       
 +-----------------------------------------------------------------------------------------+
 | NVIDIA-SMI 610.57.04              KMD Version: 610.57.04     CUDA UMD Version: 13.3     |
 +-----------------------------------------+------------------------+----------------------+
@@ -31,8 +31,8 @@ Sun Aug 30 11:17:19 2026
 | Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
 |                                         |                        |               MIG M. |
 |=========================================+========================+======================|
-|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:CA:00.0 Off |                    0 |
-| N/A   31C    P0             52W /  400W |       0MiB /  40960MiB |      0%      Default |
+|   0  NVIDIA A100-SXM4-40GB          On  |   00000000:17:00.0 Off |                    0 |
+| N/A   28C    P0             50W /  400W |       0MiB /  40960MiB |      0%      Default |
 |                                         |                        |             Disabled |
 +-----------------------------------------+------------------------+----------------------+
 
@@ -44,7 +44,7 @@ Sun Aug 30 11:17:19 2026
 |  No running processes found                                                             |
 +-----------------------------------------------------------------------------------------+
 
-Namespace(lr=3e-05, data='panet', batch=12, early_stop=6, device='cuda', name='panet-hgclr_seed_4', update=1, warmup=2000, contrast=1, graph=1, layer=1, multi=True, lamb=1, thre=0.02, tau=1, seed=4, wandb=False)
+Namespace(lr=3e-05, data='panet', batch=12, early_stop=6, device='cuda', name='panet-hgclr_seed_3', update=1, warmup=2000, contrast=1, graph=1, layer=1, multi=True, lamb=1, thre=0.02, tau=1, seed=3, wandb=False)
 DEBUG: Dataset label sample: [1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 DEBUG: Dataset label type: <class 'list'>
 SHAPE: torch.Size([32, 140])
@@ -53,5 +53,5 @@ FIRST ELEMENT: 1
 Number of predictions: 1187
 Number of truth samples: 1187
 Total positive labels found: 14768
-macro 0.5859576087346338 micro 0.8494000269650802
-Job completed at Sun 30 Aug 11:17:54 BST 2026
+macro_f1 0.5598763092686722 micro_f1 0.8451242829827915 macro_hf1 0.5787355769201286 micro_hf1 0.8449722560562999
+Job completed at Sun 27 Sep 01:43:45 BST 2026
